@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.28)  26 FEB 2026 14:28
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.28)  26 FEB 2026 15:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -661,7 +661,7 @@ Package rerunfilecheck Info: File `resume_CN.out' has not changed.
 Here is how much of TeX's memory you used:
  17625 strings out of 476683
  389520 string characters out of 5804047
- 1901018 words of memory out of 5000000
+ 1900018 words of memory out of 5000000
  37618 multiletter control sequences out of 15000+600000
  517888 words of font info for 78 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
