@@ -1,0 +1,205 @@
+\documentclass[UTF8,letterpaper,11pt]{ctexart}  % only change: ctex + UTF8
+% --- same packages controlling margins as English ---
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=blue]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+
+% Better character fitting without visual change
+\usepackage{microtype}
+
+% % Slightly tighter line spacing
+% \linespread{0.98} % was 1.0
+
+% % Section spacing: small but readable
+% \usepackage{titlesec}
+% \titlespacing*{\section}{0pt}{8pt}{4pt}  % {left}{before}{after}
+
+% List spacing: moderate, not crammed
+\usepackage{enumitem}
+\setlist[itemize]{itemsep=2pt, topsep=4pt, parsep=0pt, leftmargin=0.15in}
+
+% ---- margins: identical to English ----
+\addtolength{\oddsidemargin}{-0.7in}
+\addtolength{\evensidemargin}{-0.7in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections (same visual style as English)
+\titleformat{\section}{\vspace{-4pt}\heiti\raggedright\large}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% ======= your macros (unchanged) =======
+\newcommand{\resumeItem}[1]{\item\small{{#1 \vspace{-2pt}}}}
+\newcommand{\resumeSubheading}[4]{%
+  \vspace{-2pt}\item
+  \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    #3 & #4 \\
+  \end{tabular*}\vspace{-7pt}
+}
+\newcommand{\resumeSubSubheading}[2]{%
+  \item
+  \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \textit{\small #1} & \textit{\small #2} \\
+  \end{tabular*}\vspace{-7pt}
+}
+\newcommand{\resumeProjectHeading}[2]{%
+  \item
+  \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \small #1 & #2 \\
+  \end{tabular*}\vspace{-7pt}
+}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[label={}]} % keep same leftmargin via setlist above
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+% ===== Document =====
+\begin{document}
+
+\begin{center}
+  \textbf{\large \scshape 陈以珊} \\ \vspace{1pt}
+  \small (+86) 15000938707 $|$ 微信: kristyn5942 $|$
+  \href{mailto:Kristyn921207@gmail.com}{\underline{Kristyn921207@gmail.com}} %$|$
+  %\href{https://www.linkedin.com/in/yishan-chen}{\underline{领英}} $|$
+  %\href{https://www.kdocs.cn/l/cikfMzxMUo6m?from=docs}{\underline{作品集}}
+\end{center}
+
+% 教育背景
+\section{教育背景}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {\textbf{上海交通大学} \quad \quad | \quad 电气与计算机工程学士（ECE） \quad | \quad 中国·上海}
+    {2026年8月(预计毕业)}
+    \resumeItemListStart
+      \resumeItem{\textbf{相关课程}: STAT4060J Computational Methods, STAT4710J Data Science and Analytics using Python}
+      \resumeItem{\textbf{奖学金}: 台湾学生奖学金（2023--2025）；百贤亚洲未来领袖奖学金（2024--2026）}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{庆应义塾大学} \quad \quad| \quad 计算机科学（交换生） \quad | \quad 日本·东京}
+    {2025年3月 -- 2025年8月}
+
+  \resumeProjectHeading
+    {\textbf{特鲁瓦科技大学} \quad | \quad 法语（交换生） \quad | \quad 法国·特鲁瓦}
+    {2025年1月 -- 2025年2月}
+
+  \resumeProjectHeading
+    {\textbf{关西学院大学} \quad \quad | \quad 法律（交换生） \quad | \quad 日本·兵库}
+    {2024年1月 -- 2024年2月}
+
+\resumeSubHeadingListEnd
+
+
+% 项目经历
+\section{项目经历}
+\small \textit{（以下项目着重于展现数据流处理、模型封装验证以及 Agent 系统架构的能力）}
+
+\resumeSubHeadingListStart
+  \resumeProjectHeading
+    {\textbf{terny.ai —— Agentic AI科研机会匹配系统}}{2025年11月 -- 至今}
+    \resumeItemListStart
+      \resumeItem{设计并实现基于爬虫与大语言模型的科研信息采集系统，实现对复杂实验室网站、科研动态的自动化解析与内容抽取。}
+      %\resumeItem{主导\textbf{Agentic AI 架构}设计与落地，构建多智能体（Multi-Agent）协同流水线，封装意图推断与精准匹配服务，保障底层\textbf{可控AI系统}的稳定性指标。}
+      \resumeItem{主导\textbf{Agentic AI 架构}设计与落地，构建多智能体（Multi-Agent）协同流水线，使用多智能体协作完成研究方向理解、学生能力建模与双向匹配决策。}
+      \resumeItem{运用 Codex 与 Antigravity 框架整合跨源调用并打通复杂任务编排，系统执行层全面引入事件日志与栈追踪模块。同时使用github进行代码管理与版本控制。}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{基于 GNN 与 Transformer 的材料性质预测引擎}}{2025年12月 -- 至今}
+    \resumeItemListStart
+      \resumeItem{主导自动化数据处理流，数据涵盖材料学级（OC22/DFT）样本清洗聚合、特征抽离及多维度节点向量化映射计算。}
+      \resumeItem{独立搭建并在代码维度实现基于图神经网络（GNNs）与 Transformer 的计算底座，高度重构并客制化具备跨模型可复用的核心 PyTorch 计算集群代码。}
+      %\resumeItem{自研并封装完整的业务指标检测及训练过程管线网络，在确保特征层与张量演变更迭具备内部\textbf{可观测性}基础上，为大规模云测与持续工业部署提供可用技术切口。}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{规模化数据回归引擎计算：结构化房价预测体系}}{2025年9月 -- 2025年12月}
+    \resumeItemListStart
+      \resumeItem{运用 Numpy 与 Pandas 完成对超 25 万条源数据序列及 60+ 复杂维度特征维度的清洗与聚合抽象工程。}
+      \resumeItem{运用 sklearn 实现 Hinge 梯度下降法建立线性回归模型进行房价预测，通过调整模型参数以优化性能。}
+      \resumeItem{交付具备高复用性的基础推断验证模组，模型最终实现了 0.38 RMSE 的高精度预测水准。}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{假新闻文本分类网络与态势可视化 Dashboard $|$ 全栈开发}}{2025年9月 -- 2025年12月}
+    \resumeItemListStart
+      \resumeItem{使用Python 清理和处理7万条真假新闻记录，应用文本预处理技术以优化数据质量。}
+      \resumeItem{利用TF-IDF 对文本进行特征提取，结合SVM 与梯度下降法建立假新闻检测模型，对数据集进行训练与评估。}
+      \resumeItem{通过高级文本预处理和特征选择方法，实现93\% 的准确率，模型表现优于基准模型。 }
+      \resumeItem{使用Shiny技术图谱封装端侧数据监测前哨面板工具解法，将复杂算法预测算力封装接入用户即查型直观控制 Dashboard 面板。}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%\resumeSubHeadingListStart
+%  \resumeProjectHeading
+%    {\textbf{使用Vibe Coding建立2026年历}}{2025年10月 -- 至今}
+%    \resumeItemListStart
+%      \resumeItem{使用Vibe coding框架构建年历功能模块，支持用户管理年度目标、月度计划、每日任务和重要提醒。}
+%      \resumeItem{为系统设计并实现了直观的用户界面，结合交互式元素，使得日程安排和记录更加便捷与高效。}
+%      \resumeItem{目前已完成基础框架的搭建，并实现了月视图、周视图、任务提醒等功能，正在进行用户反馈和优化迭代。}
+%    \resumeItemListEnd
+%\resumeSubHeadingListEnd
+
+% \resumeSubHeadingListStart
+%  \resumeProjectHeading
+%    {\textbf{PRP研究项目}}{2023年9月 -- 2024年5月}
+%    \resumeItemListStart
+%      \resumeItem{在教授指导下，研究霍尔定理和分离定理，进行相关讨论与学习。}
+%      \resumeItem{参与每周讨论和反馈会，以提升对复杂主题的理解。}
+%    \resumeItemListEnd
+%\resumeSubHeadingListEnd
+
+
+% 领导力与活动
+\section{领导力与活动}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {\textbf{青年志愿者新闻宣传部副部长}}{2022年9月 -- 2024年8月}
+    \resumeItemListStart
+      \resumeItem{参与社区服务与志愿活动，负责慈善与教育类项目的对外宣传，统筹社交媒体内容发布与校园宣传协调工作。}
+      \resumeItem{带领30人团队前往云南大理洱源开展为期两周的支教活动，负责前期宣传策划、现场组织协调及成果传播。}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{学生会宣传部荣誉成员}}{2022年9月 -- 2024年8月}
+    \resumeItemListStart
+      \resumeItem{协助策划并执行全学院范围活动，同时定期设计学院周边商品，包括T恤、帆布袋、徽章等，并负责线上销售与推广。}
+    \resumeItemListEnd
+
+  %\resumeProjectHeading
+    %{\textbf{学生会副主席，E-campus 数字化校园项目负责人}}{2020年12月 -- 2022年6月}
+    %\resumeItemListStart
+      %\resumeItem{针对学生午餐高峰排队问题提出 E-campus 数字化解决方案，向校长及市政府提案，并通过调研与跨部门协作，于2022年实施线上点餐与自助设备，优化校园运营效率。}
+    %\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+
+% 技能
+\section{技能}
+\begin{itemize}[leftmargin=0.15in,label={}]
+  \small \item {
+    \textbf{AI应用与工程}: Agentic Workflow (编排与任务流), LLM Prompt Engineering, Codex Code Gen\\
+    \textbf{数据与算法}: Python, PyTorch (GNN/Transformer), pandas, NumPy, scikit-learn, SQL \\
+    \textbf{开发与工具}: Git, Shiny (前端面板封装展示), MATLAB, C/C++ \\
+    \textbf{语言}: 中文（母语），英语（流利），日语（会话）
+  }
+\end{itemize}
+
+\end{document}
