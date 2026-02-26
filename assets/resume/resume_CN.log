@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.28)  26 FEB 2026 13:08
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.5.28)  26 FEB 2026 13:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -499,7 +499,7 @@ Package microtype Info: Loading configuration file microtype.cfg.
 (/usr/local/texlive/2023/texmf-dist/tex/latex/microtype/microtype.cfg
 File: microtype.cfg 2023/03/13 v3.1a microtype main configuration file (RS)
 ))
-No file resume_CN.aux.
+(./resume_CN.aux)
 \openout1 = `resume_CN.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
@@ -580,11 +580,9 @@ LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 71.
 Package hyperref Info: Link coloring ON on input line 71.
+ (./resume_CN.out) (./resume_CN.out)
 \@outlinefile=\write3
 \openout3 = `resume_CN.out'.
-
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
 
 LaTeX Info: Redefining \microtypecontext on input line 71.
 Package microtype Info: Applying patch `item' on input line 71.
@@ -657,20 +655,14 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-Package rerunfilecheck Warning: File `resume_CN.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `resume_CN.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  1F330762B8F29A5CB685369D17F3C83D;300.
+Package rerunfilecheck Info: File `resume_CN.out' has not changed.
+(rerunfilecheck)             Checksum: 1F330762B8F29A5CB685369D17F3C83D;300.
  ) 
 Here is how much of TeX's memory you used:
- 17618 strings out of 476683
- 389434 string characters out of 5804047
+ 17625 strings out of 476683
+ 389520 string characters out of 5804047
  1901018 words of memory out of 5000000
- 37617 multiletter control sequences out of 15000+600000
+ 37618 multiletter control sequences out of 15000+600000
  517888 words of font info for 78 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  89i,7n,97p,1199b,432s stack positions out of 10000i,1000n,20000p,200000b,200000s
