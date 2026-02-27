@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.5.28)  26 FEB 2026 19:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.5.28)  27 FEB 2026 08:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Yishan CHEN - resume.tex
+**Yishan CHEN-resume.tex
 (./YishanCHEN-resume.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-22>
@@ -227,7 +227,7 @@ File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count275
 \l__pdf_internal_box=\box52
 )
-No file YishanCHEN-resume.aux.
+(./YishanCHEN-resume.aux)
 \openout1 = `YishanCHEN-resume.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
@@ -248,6 +248,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
+
 (/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count276
@@ -271,6 +272,8 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Package hyperref Info: Link coloring OFF on input line 11.
+
+(./YishanCHEN-resume.out) (./YishanCHEN-resume.out)
 \@outlinefile=\write3
 \openout3 = `YishanCHEN-resume.out'.
 
@@ -315,27 +318,21 @@ Package hyperref Info: Link coloring OFF on input line 11.
 al/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local
 /texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 (./YishanCHEN-resume.aux)
-
-Package rerunfilecheck Warning: File `YishanCHEN-resume.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `YishanCHEN-resume.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package rerunfilecheck Info: File `YishanCHEN-resume.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 9147 strings out of 476025
- 145518 string characters out of 5790017
+ 9152 strings out of 476025
+ 145640 string characters out of 5790017
  1869388 words of memory out of 5000000
  29521 multiletter control sequences out of 15000+600000
  515255 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,5n,76p,267b,425s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,5n,76p,265b,425s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb>
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></
 usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on YishanCHEN-resume.pdf (1 page, 76243 bytes).
+Output written on YishanCHEN-resume.pdf (1 page, 76221 bytes).
 PDF statistics:
  36 PDF objects out of 1000 (max. 8388607)
  25 compressed objects within 1 object stream
