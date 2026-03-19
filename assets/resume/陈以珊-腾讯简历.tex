@@ -1,0 +1,170 @@
+\documentclass[UTF8,a4paper,10pt]{ctexart}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=blue]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{microtype}
+
+% Adjust margins to fit summary and new content on one page
+
+\addtolength{\oddsidemargin}{-0.75in}
+\addtolength{\evensidemargin}{-0.75in}
+\addtolength{\textwidth}{1.5in}
+\addtolength{\topmargin}{-0.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{\vspace{-7pt}\heiti\bfseries\raggedright\large}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Macros
+\newcommand{\resumeItem}[1]{\item\small{\linespread{1.1}\selectfont #1\par}\vspace{-0.5pt}}
+\newcommand{\resumeSubheading}[4]{%
+  \vspace{-2pt}\item
+  \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    #3 & #4 \\
+  \end{tabular*}\vspace{-7pt}
+}
+\newcommand{\resumeProjectHeading}[2]{%
+  \item
+  \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \normalsize #1 & #2 \\
+  \end{tabular*}\vspace{-4pt}
+}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[label={}, leftmargin=0.15in]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[label=\tiny$\bullet$, itemsep=0pt, topsep=3pt, parsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-6pt}}
+
+\begin{document}
+
+% HEADER
+\begin{center}
+  \textbf{\large \heiti 陈以珊 (Yishan Chen)} \\ \vspace{1pt}
+  \small AI Application Engineer $|$ LLM \& Multi-Agent Systems $|$ Workflow Automation \\ \vspace{1pt}
+  \small \href{mailto:Kristyn921207@gmail.com}{Kristyn921207@gmail.com} $|$ 微信: kristyn5942 $|$ \href{https://kristynchen.github.io/Personal-Website/}{\underline{个人网站}}
+\end{center}
+\vspace{-12pt}
+
+% 个人简介
+\section{个人简介}
+\small {电子与计算机工程专业学生，专注于 LLM 应用开发与多智能体系统 (Agentic AI) 设计。具备 Prompt Engineering、RAG 与 AI 工作流自动化的实战经验。主导构建多智能体协同系统与自动化测试框架，将大语言模型能力落地至实际场景，实现复杂任务的自动化处理与效率优化。}
+\vspace{-4pt}
+
+% 教育背景
+\section{教育背景}
+\resumeSubHeadingListStart
+  \resumeProjectHeading
+    {\textbf{上海交通大学} \quad \quad | \quad 密西根学院 电子与计算机工程学士 \quad | \quad 中国·上海 }{2026年8月（预计毕业）}
+    \resumeItemListStart
+      \resumeItem{\textbf{奖学金}：台湾学生奖学金（2023--2025）；\textbf{百贤亚洲未来领袖奖学金 AFLSP }——面向亚洲顶尖高校学生的跨文化交流及领导力项目。}
+      \resumeItem{\textbf{相关课程}：STAT4060J Computational Methods, STAT4710J Data Science and Analytics using Python}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{庆应义塾大学} \quad \quad | \quad 计算机科学（交换生） \quad | \quad 日本·东京}{2025年3月 -- 2025年8月}
+  \resumeProjectHeading
+    {\textbf{特鲁瓦科技大学} \quad | \quad 法语（交换生） \quad | \quad 法国·特鲁瓦}{2025年1月 -- 2025年2月}
+  \resumeProjectHeading
+    {\textbf{关西学院大学} \quad \quad | \quad 法律（交换生） \quad | \quad 日本·兵库}{2024年1月 -- 2024年2月}
+\resumeSubHeadingListEnd
+
+% 工作与教学经历
+\section{工作与教学经历}
+\resumeSubHeadingListStart
+  \resumeProjectHeading
+    {\textbf{上海比特无限智能科技有限公司} \quad | \quad AI 应用工程师实习生}{2026年3月 -- 至今}
+    \resumeItemListStart
+      \resumeItem{参与 LangGraph 向 MCP 架构迁移，主导构建基于 LLM 的自动化测试与评估框架：设计 Prompt Engineering 与意图识别机制，通过多维度评估标准将系统意图识别准确率从 27\% 提升至 86\%，实现测试反馈分钟级闭环。}
+      \resumeItem{设计并实现多智能体测试与调度系统，构建 Benchmark 与自动化评估 pipeline，实现测试数据与可视化看板的实时联动。}
+      \resumeItem{基于视觉大模型（VLM）构建结构化信息提取与异常检测 pipeline，将非结构化文档转化为可用数据流，减少约 \textbf{90\%} 人工审核成本，推动 AI 能力在业务场景中的工程化落地。}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{上海交通大学} \quad | \quad ENRG1000J 工程导论 助教}{2023年9月 -- 2025年12月}
+    \resumeItemListStart
+      %\resumeItem{开发 Python 自动化脚本，实现作业批量处理与异常数据识别，显著减少人工操作时间，优化课程运营流程；具备独立完成数据处理闭环的实战能力。}
+      \resumeItem{主动识别助教工作中的重复性痛点，自行构建 n8n 自动化 Pipeline（Gmail $\times$ Google Sheets），覆盖学生评量解析、合格证书自动发送、改分记录汇总及期末作业分级打包交付全流程；每学期节省 8+ 小时人工操作，消除漏发/错发风险；工作流设计具备高度可复用性。}
+      \resumeItem{带领 60+ 名本地与国际混合班学生完成每周 Lab 课程；\textbf{连续三次获评「优秀助教」}并受邀留任，展现跨文化沟通与多元团队协作能力。}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+% 项目经历
+\section{项目经历}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {\textbf{\href{https://terny.ai/}{terny.ai} — AI 科研机会匹配系统} \quad | \quad Python, LangGraph, LLM}{2025年11月 -- 至今}
+    \resumeItemListStart
+      \resumeItem{构建基于爬虫与大语言模型的科研信息采集系统，实现对复杂实验室网站的非结构化网页数据自动化解析与结构化抽取。}
+      \resumeItem{设计并实现 \textbf{RAG (检索增强生成)} 架构：结合向量检索与 “Excel 权威数据优先 + WebFallback” 的混合检索策略，将识别准确度从 75\% 提升至 98\% 以上。}
+      \resumeItem{主导多智能体 (Multi-Agent) 系统设计：利用 LangGraph 构建协同流水线，实现研究方向理解、能力建模与双向匹配决策的自动化处理。}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{假新闻文本分类与数据可视化 Dashboard} \quad | \quad Python, R, Shiny}{2025年9月 -- 2025年12月}
+    \resumeItemListStart
+      \resumeItem{清洗处理 \textbf{7 万条}新闻数据，使用 TF-IDF + SVM 模型实现文本分类，\textbf{准确率达 93\%}，优于基准模型。}
+      \resumeItem{使用 Shiny 构建\textbf{交互式可视化看板}，支持模型预测实时监测与数据动态查询，直接对应业务运营可视化需求。}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{房价预测模型与数据分析} \quad | \quad Python, Excel, scikit-learn}{2025年7月 -- 2025年9月}
+    \resumeItemListStart
+      \resumeItem{完成数据清洗、特征工程与多模型集成，实现约 \textbf{0.36 RMSE}，排名\textbf{前 2 名}；使用 Excel 制作统计表辅助结果分析，熟练运用数据透视表与公式进行数据整理与报表呈现。}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{基于 GNN 与 Transformer 的材料性质预测引擎}\quad | \quad Python, PyTorch, GNNs, Transformer}{2025年12月 -- 至今}
+    \resumeItemListStart
+      \resumeItem{主导自动化数据处理流，数据涵盖材料学级（OC22/DFT）样本清洗聚合、特征抽离及多维度节点向量化映射计算。}
+      \resumeItem{搭建并在代码维度实现基于图神经网络（GNNs）与 Transformer 的计算底座，高度重构并客制化具备跨模型可复用的核心 PyTorch 计算集群代码。}
+    \resumeItemListEnd
+    
+\resumeSubHeadingListEnd
+
+% 领导力与活动
+\section{领导力与活动}
+\resumeSubHeadingListStart
+  \resumeProjectHeading
+    {\textbf{学生会副主席 — E-campus 数字化校园项目负责人}}{2020年12月 -- 2022年6月}
+    \resumeItemListStart
+      \resumeItem{主导校园数字化转型项目，联合台北市政府推行线上点餐与自助设备；项目落地后日均服务 800+ 学生，热食部单日营业额提升 40\%，累计受益学生逾 6000 人。}
+      \resumeItem{独立识别学生痛点并完成跨部门提案，协调学校、政府、供应商三方完成系统部署，并代表团队出席新闻发布会进行项目汇报。}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{青年志愿者新闻宣传处副处长}}{2022年9月 -- 2024年8月}
+    \resumeItemListStart
+      \resumeItem{主导品牌宣传与社群运营：通过精确的内容推送策略，在 \textbf{3 天内成功吸引 60+ 位}报名者参与志愿活动，显著提升组织影响力。}
+      \resumeItem{带领 30 人团队赴异地开展两周支教，负责项目整体调度与跨多元背景的沟通协调，优化团队协作效率。}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+% 技能
+\section{技能}
+\vspace{2pt}
+\small
+%\textbf{AI \& LLM}：Prompt Engineering, RAG, Multi-Agent Systems, LLM Application Development \\
+%\textbf{AI Frameworks}：LangGraph, OpenAI API, VLM, Hugging Face \\
+%\textbf{Data \& Retrieval}：Embedding, Vector Search (向量数据库), Hybrid Retrieval (混合检索) \\
+%\textbf{Automation}：n8n, Workflow Orchestration, API Integration, Python, SQL \\
+%\textbf{语言能力}：中文（母语），英语（流利），日语（会话）
+
+\textbf{AI \& LLM}：Prompt Engineering, RAG, Multi-Agent Systems, LLM Application Development \\
+\textbf{Frameworks \& Tools}：LangGraph, MCP, VLM, Hugging Face \\
+\textbf{Backend \& Data}：Python, SQL, API Integration, Workflow Orchestration, Embedding, Vector Search, Hybrid Retrieval \\
+\textbf{Others}：GNNs, Transformers, pandas, NumPy, Excel \quad | \quad 中文（母语），英语（流利），日语（会话）
+
+\end{document}
