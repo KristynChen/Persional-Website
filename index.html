@@ -33,7 +33,7 @@
     </script>
     <style type="text/tailwindcss">
         body {
-            @apply bg-cream text-dark font-sans;
+            @apply bg-cream text-dark font-sans overflow-x-hidden;
         }
 
         /* 模拟高级纸张质感 */
@@ -110,12 +110,132 @@
                 transform: translateY(-15px);
             }
         }
+        /* Big Bang 爆炸特效升級 */
+        #intro {
+            perspective: 2000px;
+            cursor: pointer;
+        }
+
+        .intro-bg {
+            position: absolute;
+            inset: -10%; /* Larger for parallax */
+            background: url('assets/images/IMG_7276.JPG') center/cover no-repeat;
+            z-index: 0;
+            transition: transform 0.25s ease-out;
+            filter: brightness(0.8);
+        }
+
+        #intro-orb {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 60px rgba(255, 255, 255, 0.9), 
+                        0 0 120px rgba(45, 79, 30, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: pulse-orb 3s ease-in-out infinite;
+        }
+
+        #intro-orb::after {
+            content: "CLICK TO START";
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            color: theme('colors.forest');
+            font-weight: bold;
+            text-align: center;
+        }
+
+        @keyframes pulse-orb {
+            0%, 100% { transform: scale(1); opacity: 0.9; box-shadow: 0 0 60px rgba(255, 255, 255, 0.7); }
+            50% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 100px rgba(45, 79, 30, 0.6); }
+        }
+
+        #skills-container {
+            position: absolute;
+            inset: 0;
+            transform-style: preserve-3d;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .skill-card {
+            position: absolute;
+            width: 170px;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid theme('colors.forest / 15%');
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            cursor: grab;
+            transition: opacity 0.5s ease-out, box-shadow 0.3s ease;
+            user-select: none;
+            pointer-events: auto;
+            /* 3D / Physics Properties */
+            --parallax-x: 0px;
+            --parallax-y: 0px;
+            --base-x: 0px;
+            --base-y: 0px;
+            --base-z: 0px;
+            --rot-z: 0deg;
+            transform: translate3d(
+                calc(var(--base-x) + var(--parallax-x)), 
+                calc(var(--base-y) + var(--parallax-y)), 
+                var(--base-z)
+            ) rotateZ(var(--rot-z));
+        }
+
+        /* Subtle shake on collision-like settling */
+        .skill-card.landed {
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease-out, box-shadow 0.3s ease;
+        }
+
+        .skill-card:active {
+            cursor: grabbing;
+        }
+
+        .skill-card:hover {
+            box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.35);
+            z-index: 1001 !important;
+        }
+
+        .skill-card h4 {
+            @apply font-serif font-bold text-base mb-1 text-forest;
+        }
+
+        .skill-card p {
+            @apply text-[10px] text-dark/70 leading-tight font-sans;
+        }
     </style>
 </head>
 
 <body class="selection:bg-forest/20 selection:text-forest">
 
-    <nav class="px-8 py-6 flex justify-between items-center fixed w-full top-0 bg-cream/80 backdrop-blur-md z-40 border-b border-dark/5 transition-all duration-500"
+    <!-- Cinematic Splash Section -->
+    <section id="intro" class="h-screen relative overflow-hidden z-[60] flex items-center justify-center">
+        <!-- Background with Parallax -->
+        <div class="intro-bg"></div>
+
+        <!-- Central Spark Orb -->
+        <div id="intro-orb"></div>
+
+        <!-- Explosion Container -->
+        <div id="skills-container" class="absolute inset-x-0 inset-y-0 flex items-center justify-center pointer-events-none"></div>
+
+        <!-- Hint to scroll (Initially Hidden) -->
+        <div id="scroll-hint" class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-0 transition-opacity duration-1000 z-10 text-white">
+            <span class="text-[10px] uppercase tracking-[0.4em] font-bold opacity-60">Scroll to Explore</span>
+            <div class="w-[1px] h-12 bg-gradient-to-b from-white/40 to-transparent"></div>
+        </div>
+    </section>
+
+    <nav class="px-8 py-6 flex justify-between items-center fixed w-full top-0 bg-cream/80 backdrop-blur-md z-50 border-b border-dark/10 shadow-sm"
         id="navbar">
         <a href="#" class="text-xl font-bold tracking-tighter hover:text-forest transition">YISHAN.</a>
         <div class="space-x-10 text-xs uppercase tracking-[0.2em] font-medium text-dark/70 flex items-center">
@@ -137,12 +257,12 @@
         </div>
     </nav>
 
-    <header class="min-h-screen flex items-center pt-20 px-8 relative overflow-hidden">
+    <header class="min-h-screen flex items-center pt-20 px-8 relative z-40">
         <div
             class="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-bl from-forest/5 via-cream to-cream -z-10 blur-3xl">
         </div>
 
-        <div class="max-w-7xl mx-auto w-full flex flex-col-reverse md:flex-row items-center gap-16 md:gap-24">
+        <div class="max-w-7xl mx-auto w-full flex flex-col-reverse md:flex-row items-center gap-16 md:gap-24 relative z-10">
             <div class="flex-1 fade-up visible z-10">
                 <div class="flex items-center gap-4 mb-6">
                     <span class="h-[1px] w-12 bg-forest/30"></span>
@@ -163,9 +283,9 @@
                     </span><br>
                     Possibilities.
                 </h1>
-                <!-- <p class="text-lg text-dark/70 max-w-lg leading-relaxed mb-12 font-light">
-                    专注多智能体协同流水线 (Multi-Agent Workflow) 与图神经网络。致力于构建可观测、工程化的 AI 系统。
-                </p> -->
+                <p class="text-lg text-dark/70 max-w-lg leading-relaxed mb-12 font-light" data-i18n="hero_desc">
+                    Designing agentic architectures and automated research pipelines to bridge the gap between AI research and practical tools.
+                </p>
                 <div class="flex flex-wrap gap-4">
                     <a href="#projects"
                         class="group inline-flex items-center gap-3 px-8 py-4 bg-dark text-cream rounded-full hover:bg-forest transition-all duration-300">
@@ -188,7 +308,7 @@
                             </svg>
                         </button>
                         <div
-                            class="absolute top-full left-0 mt-2 w-full bg-white border border-dark/10 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-hidden flex flex-col">
+                            class="absolute top-full left-0 mt-2 w-40 bg-white border border-dark/10 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-hidden flex flex-col">
                             <a href="assets/resume/YishanCHEN-resume.pdf" target="_blank"
                                 class="px-5 py-3 hover:bg-cream transition-colors text-xs font-bold text-center border-b border-dark/5 tracking-widest uppercase">English</a>
                             <a href="assets/resume/陈以珊-实习简历.pdf" target="_blank"
@@ -222,6 +342,8 @@
         </div>
     </header>
 
+    </header>
+
     <section id="projects" class="py-40 px-8 bg-white relative overflow-hidden">
         <span
             class="absolute -top-10 -left-10 text-[12rem] text-dark/5 leading-none select-none z-0 font-bold">WORKS.</span>
@@ -236,7 +358,14 @@
                     + Research</p>
             </div>
 
-            <div class="grid md:grid-cols-12 gap-16 items-center mb-48 fade-up">
+            <div class="grid md:grid-cols-12 gap-16 items-center mb-48 fade-up text-left">
+                <div class="md:col-span-12 mb-12">
+                   <h3 class="text-4xl mb-4 font-bold">terny.ai</h3>
+                    <p class="text-forest mb-6 uppercase tracking-widest text-xs font-bold flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-forest"></span> <span
+                            data-i18n="project_terny_category">Agentic System Architecture</span>
+                    </p>
+                </div>
                 <div class="md:col-span-7 order-2 md:order-1 relative group">
                     <div
                         class="absolute -inset-4 bg-gradient-to-tr from-forest/10 via-transparent to-transparent rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700">
@@ -248,33 +377,57 @@
                     </div>
                 </div>
                 <div class="md:col-span-5 order-1 md:order-2 pl-0 md:pl-12">
-                    <h3 class="text-4xl mb-6 font-bold">terny.ai</h3>
-                    <p class="text-forest mb-8 uppercase tracking-widest text-xs font-bold flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-forest"></span> <span
-                            data-i18n="project_terny_category">Agentic System Architecture</span>
-                    </p>
                     <p class="text-dark/70 mb-10 leading-loose font-light" data-i18n="project_terny_desc">
-                        设计并实现基于 Multi-Agent 架构的端到端科研智能匹配系统。底层结合自动化爬虫与
-                        LLM，对非结构化科研网站进行语义解析与结构化抽取，构建可持续更新的科研机会知识库。构建多智能体协同流水线，将研究方向语义建模、学生能力建模与匹配决策解耦，实现全链路自动化推荐。
+                        Designing an end-to-end research matching system based on Multi-Agent architecture. We combine automated scrapers with RAG (Retrieval Augmented Generation) — achieving 98%+ matching accuracy using a hybrid "Excel + Web" retrieval policy.
                     </p>
-                    <div class="flex gap-4 mb-8">
+                    <div class="flex flex-wrap gap-4 mb-8">
                         <span
-                            class="px-4 py-2 bg-cream rounded-full text-xs font-medium tracking-wider border border-dark/5">Python</span>
+                            class="px-4 py-2 bg-cream rounded-full text-xs font-medium tracking-wider border border-dark/5">LangGraph</span>
                         <span
-                            class="px-4 py-2 bg-cream rounded-full text-xs font-medium tracking-wider border border-dark/5">Multi-Agent</span>
+                            class="px-4 py-2 bg-cream rounded-full text-xs font-medium tracking-wider border border-dark/5">RAG</span>
                         <span
-                            class="px-4 py-2 bg-cream rounded-full text-xs font-medium tracking-wider border border-dark/5">Observability</span>
+                            class="px-4 py-2 bg-cream rounded-full text-xs font-medium tracking-wider border border-dark/5">Automation</span>
                     </div>
                     <a href="https://terny.ai/" target="_blank"
                         class="group inline-flex items-center gap-2 font-semibold text-sm hover:text-forest transition"
                         data-i18n="project_terny_link">
-                        查看 terny.ai Website
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-4 h-4 group-hover:translate-x-1 transition-transform">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                        </svg>
+                        Visit terny.ai Website →
                     </a>
+                </div>
+            </div>
+
+            <!-- Project 2: Enterprise AI (Shanghai Bit Infinite) -->
+            <div class="grid md:grid-cols-12 gap-16 items-center mb-48 fade-up text-left">
+                <div class="md:col-span-5 pr-0 md:pr-12">
+                     <span
+                        class="inline-flex items-center gap-1.5 px-3 py-1 mb-4 rounded-full text-xs font-semibold tracking-wider uppercase"
+                        style="background:rgba(45,79,30,0.1);color:#2D4F1E;border:1px solid rgba(45,79,30,0.25);">
+                        Internship Project
+                    </span>
+                    <h3 class="text-4xl mb-6 font-bold leading-tight" data-i18n="project_enterprise_title">Enterprise AI <br>Testing & Automation</h3>
+                    <p class="text-forest mb-8 uppercase tracking-widest text-xs font-bold flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-forest"></span> <span data-i18n="project_enterprise_category">AI Application Engineering</span>
+                    </p>
+                    <p class="text-dark/70 mb-10 leading-loose font-light" data-i18n="project_enterprise_desc">
+                        Building a LLM-based automated evaluation framework for industrial scale intent recognition. Implemented VLM-powered pipelines for structured information extraction from non-structured documents, reducing manual audit costs by 90%.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span
+                            class="px-4 py-2 bg-cream rounded-full text-xs font-medium tracking-wider border border-dark/5">VLM</span>
+                        <span
+                            class="px-4 py-2 bg-cream rounded-full text-xs font-medium tracking-wider border border-dark/5">LangGraph</span>
+                        <span
+                            class="px-4 py-2 bg-cream rounded-full text-xs font-medium tracking-wider border border-dark/5">MCP Architecture</span>
+                    </div>
+                </div>
+                <div class="md:col-span-7 relative group">
+                     <div
+                        class="relative aspect-video rounded-2xl overflow-hidden shadow-[0_25px_60px_-12px_rgba(0,0,0,0.2)] bg-dark/5 hover:translate-y-[-5px] transition-all duration-500 border border-dark/10 flex items-center justify-center">
+                         <div class="flex flex-col items-center opacity-30">
+                            <svg class="w-16 h-16 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+                             <span class="text-xs uppercase tracking-widest">Systems Architecture</span>
+                         </div>
+                    </div>
                 </div>
             </div>
 
@@ -618,6 +771,13 @@
         </div>
     </section>
 
+    <!-- Wave transition from white to cream -->
+    <div class="relative bg-white -mb-px">
+        <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" class="block w-full" preserveAspectRatio="none" style="transform: rotate(180deg);">
+            <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#F9F8F4" />
+        </svg>
+    </div>
+
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
@@ -635,51 +795,72 @@
 
             const translations = {
                 zh: {
-                    nav_projects: "项目经历",
-                    nav_about: "关于我",
-                    nav_contact: "联系方式",
-                    nav_cv: "简历",
-                    hero_major: "上海交大 ECE '26 / 探索 AI 工程",
-                    hero_title: "探索<span class='text-dark relative'>Agentic</span><br>的无限可能",
-                    hero_button: "浏览作品",
-                    hero_cv: "查看简历",
-                    hero_hi: "嗨！我是陈以珊",
-                    works_title: "核心<br><span class='text-forest'>项目经历</span>",
-                    works_sub: "/ 工程落地 + 深度学习研究",
-                    project_terny_category: "Agent 智能系统架构",
-                    project_terny_desc: "设计基于 Multi-Agent 架构的科研智能匹配系统。结合自动化爬虫与 LLM，对非结构化科研网站进行语义解析与结构化抽取。通过多智能体协同流水线，分析学生能力、机会识别与匹配决策，实现全链路自主推荐。",
-                    project_terny_link: "查看 terny.ai 官网",
-                    project_gnn_status: "进行中",
-                    project_gnn_title: "GNN & Transformer<br>材料性质预测引擎",
-                    project_gnn_category: "深度学习工程落地",
-                    project_gnn_desc: "基于 OC22 数据集实现晶体结构–性质预测的深度学习框架。设计融合 GNN 与 Transformer 的混合架构，将局部键关迎几何与长程结构关联联合建模，实现对晶体图结构的高表达性剥离。",
+                    nav_projects: "精選作品",
+                    nav_about: "關於我",
+                    nav_contact: "聯繫方式",
+                    nav_cv: "簡歷",
+                    hero_major: "上海交大 ECE '26 / 持續探索 AI",
+                    hero_title: "探索<span class='text-dark relative'>Agentic</span><br>的無限可能",
+                    hero_desc: "致力於構建具備自主決策能力的 AI Agent 與自動化科研管線，將 LLM 的能力轉化為可落地的生產力工具。",
+                    hero_button: "瀏覽作品",
+                    hero_cv: "查看簡歷",
+                    hero_hi: "嗨！我是陳以珊",
+                    works_title: "核心<br><span class='text-forest'>項目經歷</span>",
+                    works_sub: "/ 工程落地 + 深度學習研究",
+                    project_terny_category: "Agent 智能系統架構",
+                    project_terny_desc: "設計並實現基於 Multi-Agent 結構的端到端科研智能匹配系統。結合自動化爬蟲與 RAG 架構，實現 98% 以上的精準匹配準確率。主導多智能體協同流水線，將能力建模與配對決策自動化。",
+                    project_terny_link: "查看 terny.ai 官網 →",
+                    project_enterprise_title: "企業級 AI <br>自動化測試與工作流",
+                    project_enterprise_category: "AI 應用工程實踐",
+                    project_enterprise_desc: "主導構建基於 LLM 的自動化測試與評估框架；利用 VLM 實現非結構化文檔的結構化提取，為實際業務減少約 90% 的人工審核成本。",
+                    project_gnn_status: "進行中",
+                    project_gnn_title: "GNN & Transformer<br>材料性質預測引擎",
+                    project_gnn_category: "深度學習工程落地",
+                    project_gnn_desc: "針對材料學級數據構建的深度學習框架。獨立搭建並高度重構 PyTorch 計算底座，結合圖神經網絡（GNN）與 Transformer 核心技術。",
                     edu_reset: "⊕ 回到全景",
                     edu_title: "教育",
                     edu_title_sub: "背景",
-                    edu_hint: "← 点击上方条目可定位到地图",
-                    award_title: "奖学金",
-                    award_title_sub: "& 荣誉",
-                    award_sub: "/ 个人成就",
-                    award_hint: "点击切换照片",
-                    award_name_1: "台湾学生奖学金",
-                    award_desc_1: "由财政部与教育部共同设立，表彰在大陆高校就读的优秀台湾学生。",
-                    award_name_2: "百贤亚洲未来领袖奖学金",
-                    award_desc_2: "由百贤教育基金会与百贤亚洲研究院创立，资助亚洲优秀青年赴顶尖大学攻读学、硕士，培育跨文化理解与亚洲青年领袖力。",
-                    contact_title: "随时与我联系 👇",
-                    //contact_sub: "无论是实习机会、项目交流，还是想纯粹聊聊 AI ☕",
-                    //contact_form_title: "有问题想问我？",
-                    contact_location: "中国·上海 · 支持远程实习",
-                    lightbox_no_photos: "暂无照片",
-                    marker_hint: "🖼 点击查看照片",
-                    edu_name_sjtu: "上海交通大学",
-                    edu_detail_sjtu: "ECE 本科 · 中国·上海 · 2026年8月",
+                    edu_hint: "← 點擊上方條目可定位到地圖",
+                    award_title: "獎學金",
+                    award_title_sub: "& 榮譽",
+                    award_sub: "/ 個人成就",
+                    award_hint: "點擊切換照片",
+                    award_name_1: "台灣學生獎學金",
+                    award_desc_1: "由財政部與教育部共同設立，表彰在大陸高校就讀的優秀台灣學生。",
+                    award_name_2: "百賢亞洲未來領袖獎學金",
+                    award_desc_2: "由百賢教育基金會與百賢亞洲研究院創立，資助亞洲優秀青年赴頂尖大學攻讀學、碩士，培育跨文化理解與領導力。",
+                    contact_title: "隨時與我聯繫 👇",
+                    contact_location: "中國·上海 · 支持遠端實習",
+                    lightbox_no_photos: "暫無照片",
+                    marker_hint: "🖼 點擊查看照片",
+                    edu_name_sjtu: "上海交通大學",
+                    edu_detail_sjtu: "ECE 本科 · 中國·上海 · 2026年8月",
                     edu_extra_sjtu: "STAT4060J Computational Methods<br>STAT4710J Data Science and Analytics using Python",
-                    edu_name_keio: "庆应义塾大学",
-                    edu_detail_keio: "CS 交换生 · 日本·东京 · 2025年3月–8月",
-                    edu_name_utt: "特鲁瓦科技大学",
-                    edu_detail_utt: "法语交换生 · 法国·特鲁瓦 · 2025年1月–2月",
-                    edu_name_kwansei: "关西学院大学",
-                    edu_detail_kwansei: "法律交换生 · 日本·兵库 · 2024年1月–2月"
+                    edu_name_keio: "慶應義塾大學",
+                    edu_detail_keio: "CS 交換生 · 日本·東京 · 2025年3月–8月",
+                    edu_name_utt: "特魯瓦科技大學",
+                    edu_detail_utt: "法語交換生 · 法國·特魯瓦 · 2025年1月–2月",
+                    edu_name_kwansei: "關西學院大學",
+                    edu_detail_kwansei: "法律交換生 · 日本·兵庫 · 2024年1月–2月",
+                    skills_title: "核心技術 <span class='text-forest'>領域</span>",
+                    skills_sub: "/ 專業能力與工具棧",
+                    skills_refall: "重新掉落",
+                    skill_1_title: "Agentic Systems",
+                    skill_1_desc: "基於 LangGraph 與 Multi-Agent 的自主系統開發",
+                    skill_2_title: "RAG 框架",
+                    skill_2_desc: "混合检索、向量數據庫與長文本處理流水線",
+                    skill_3_title: "深度學習",
+                    skill_3_desc: "PyTorch, GNNs 與 OC22 材料性質預測",
+                    skill_4_title: "VLM & CV",
+                    skill_4_desc: "視覺語言模型輔助的結構化信息提取",
+                    skill_5_title: "系統架構",
+                    skill_5_desc: "基於 MCP 協議的工具集成與擴展",
+                    skill_6_title: "自動化科研",
+                    skill_6_desc: "端到端的學術信息檢索與自動化匹配",
+                    skill_7_title: "數據科學",
+                    skill_7_desc: "大比例非結構化數據清理與規整項目實踐",
+                    skill_8_title: "跨文化交流",
+                    skill_8_desc: "流利的英/日/法語與跨學科協作能力"
                 },
                 en: {
                     nav_projects: "Projects",
@@ -688,18 +869,22 @@
                     nav_cv: "Resume",
                     hero_major: "UM-SJTU JI ECE '26 / Exploring AI",
                     hero_title: "Exploring<br><span class='text-dark relative'>Agentic</span><br>Possibilities.",
+                    hero_desc: "Designing agentic architectures and automated research pipelines to bridge the gap between AI research and practical tools.",
                     hero_button: "Explore Work",
                     hero_cv: "View Resume",
                     hero_hi: "Hi! I'm Yishan CHEN",
                     works_title: "Featured <br><span class='text-forest'>Projects</span>",
                     works_sub: "/ Engineering + Research",
                     project_terny_category: "Agentic System Architecture",
-                    project_terny_desc: "Designed and implemented an end-to-end research matching system based on Multi-Agent architecture. Integrated automated scrapers and LLMs to extract structured data from complex academic websites. Autonomous recommendation through coordinated agents for profile understanding, opportunity ranking, and decision making.",
+                    project_terny_desc: "Designed and implemented an end-to-end research matching system based on Multi-Agent architecture. We combine automated scrapers with RAG (Retrieval Augmented Generation) — achieving 98%+ matching accuracy using a hybrid 'Excel + Web' retrieval policy.",
                     project_terny_link: "Visit terny.ai Website →",
+                    project_enterprise_title: "Enterprise AI <br>Testing & Automation",
+                    project_enterprise_category: "AI Application Engineering",
+                    project_enterprise_desc: "Building a LLM-based automated evaluation framework for industrial scale intent recognition. Implemented VLM-powered pipelines for structured information extraction from non-structured documents, reducing manual audit costs by 90%.",
                     project_gnn_status: "In Progress",
                     project_gnn_title: "GNN & Transformer<br>Material Property Engine",
                     project_gnn_category: "Deep Learning Engineering",
-                    project_gnn_desc: "Implemented a deep learning framework on the OC22 dataset for structure–property prediction in heterogeneous catalysis. Developed a hybrid GNN–Transformer architecture to integrate local bonding geometry with long-range structural correlations for expressive crystal graph representations.",
+                    project_gnn_desc: "Implemented a deep learning framework on the OC22 dataset for structure–property prediction. Developed a hybrid GNN–Transformer architecture to integrate local bonding geometry with long-range structural correlations.",
                     edu_reset: "⊕ Reset to Overview",
                     edu_title: "Education",
                     edu_title_sub: "Background",
@@ -711,11 +896,9 @@
                     award_name_1: "Taiwan Student Scholarship",
                     award_desc_1: "Established by China's Ministry of Finance & Education for outstanding Taiwanese students studying in mainland China.",
                     award_name_2: "BXAI Asian Future Leaders Scholarship",
-                    award_desc_2: "Founded by Bai Xian Education Foundation & Asia Institute (AFLSP), funding outstanding Asian youth for undergraduate and master's studies at top universities, to cultivate cross-cultural understanding and next-generation Asian leadership.",
+                    award_desc_2: "Founded by Bai Xian Education Foundation & Asia Institute (AFLSP), funding outstanding Asian youth for undergraduate and master's studies at top universities.",
                     contact_title: "Reach out to me here",
-                    //contact_sub: "Feel free to ping me for internship opportunities, discussing ideas, or virtual coffee ☕",
-                    //contact_form_title: "Have a Question?",
-                    contact_location: "Shanghai, China · Available for Remote Internship",
+                    contact_location: "Shanghai, China · Available for ML/Agent Internships",
                     lightbox_no_photos: "No photos available",
                     marker_hint: "🖼 Click to view photos",
                     edu_name_sjtu: "Shanghai Jiao Tong University",
@@ -726,7 +909,26 @@
                     edu_name_utt: "Univ. of Technology of Troyes",
                     edu_detail_utt: "Exchange French · Troyes, France · Jan–Feb 2025",
                     edu_name_kwansei: "Kwansei Gakuin University",
-                    edu_detail_kwansei: "Exchange Law · Hyogo, Japan · Jan–Feb 2024"
+                    edu_detail_kwansei: "Exchange Law · Hyogo, Japan · Jan–Feb 2024",
+                    skills_title: "Core <span class='text-forest'>Expertise</span>",
+                    skills_sub: "/ Technical Capabilities & Toolsets",
+                    skills_refall: "Drop Again",
+                    skill_1_title: "Agentic Systems",
+                    skill_1_desc: "Autonomous system development based on LangGraph and Multi-Agent flows",
+                    skill_2_title: "RAG Frameworks",
+                    skill_2_desc: "Hybrid retrieval, vector databases, and long-context processing pipelines",
+                    skill_3_title: "Deep Learning",
+                    skill_3_desc: "PyTorch, GNNs, and material property prediction on OC22",
+                    skill_4_title: "VLM & CV",
+                    skill_4_desc: "Structured information extraction aided by Visual Language Models",
+                    skill_5_title: "System Architecture",
+                    skill_5_desc: "Tool integration and extensibility based on the MCP protocol",
+                    skill_6_title: "Automated Research",
+                    skill_6_desc: "End-to-end academic info retrieval and automated matching",
+                    skill_7_title: "Data Science",
+                    skill_7_desc: "ETL pipelines for large-scale unstructured data cleansing",
+                    skill_8_title: "Multilingual",
+                    skill_8_desc: "Fluent in English, Japanese, French for global collaboration"
                 }
             };
 
@@ -906,6 +1108,167 @@
 
             // Initial render
             updateContent();
+
+            // --- Skills Falling Logic ---
+            const skillsConfig = [
+                { id: 1, title: 'skill_1_title', desc: 'skill_1_desc' },
+                { id: 2, title: 'skill_2_title', desc: 'skill_2_desc' },
+                { id: 3, title: 'skill_3_title', desc: 'skill_3_desc' },
+                { id: 4, title: 'skill_4_title', desc: 'skill_4_desc' },
+                { id: 5, title: 'skill_5_title', desc: 'skill_5_desc' },
+                { id: 6, title: 'skill_6_title', desc: 'skill_6_desc' },
+                { id: 7, title: 'skill_7_title', desc: 'skill_7_desc' },
+                { id: 8, title: 'skill_8_title', desc: 'skill_8_desc' },
+            ];
+
+            // --- Intro Physics Gravity Rain Logic ---
+            const introOrb = document.getElementById('intro-orb');
+            const introBg = document.querySelector('.intro-bg');
+            const skillsContainer = document.getElementById('skills-container');
+            const cardData = [];
+            let started = false;
+
+            function startGravityRain() {
+                if (started) return;
+                started = true;
+
+                // 1. Clear Orb gracefully
+                introOrb.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 1, 1)';
+                introOrb.style.transform = 'scale(0) translateY(100px)';
+                introOrb.style.opacity = '0';
+                introOrb.style.pointerEvents = 'none';
+
+                // 2. Falling sequence
+                const screenWidth = window.innerWidth;
+                const screenHeight = window.innerHeight;
+
+                skillsConfig.forEach((skill, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'skill-card';
+                    
+                    // Initial horizontal distribution
+                    const startX = (Math.random() - 0.5) * (screenWidth * 0.8);
+                    const startY = -(screenHeight * 1.2); // Start way above
+                    
+                    // Landing "Stack" Logic: Varying depths and scattered stack positions at the bottom
+                    const landingY = (screenHeight * 0.2) + (Math.random() * 100); // Settling in a bottom-ish area
+                    const landingRot = (Math.random() - 0.5) * 80; // Wild rotations for "stacking" look
+                    const depthZ = (Math.random() - 0.5) * 300;
+
+                    const data = {
+                        element: card,
+                        baseX: startX, 
+                        baseY: startY,
+                        currentBaseX: startX,
+                        currentBaseY: startY,
+                        baseZ: depthZ,
+                        parallaxSpeed: 0.04 + Math.random() * 0.08
+                    };
+
+                    card.style.setProperty('--base-x', `${startX}px`);
+                    card.style.setProperty('--base-y', `${startY}px`);
+                    card.style.setProperty('--base-z', `${depthZ}px`);
+                    card.style.setProperty('--rot-z', `${(Math.random() - 0.5) * 360}deg`); // Initial spin
+                    card.style.zIndex = index + 1;
+
+                    card.innerHTML = `
+                        <h4 data-i18n="${skill.title}" class="font-bold text-forest">${translations[currentLang][skill.title]}</h4>
+                        <p data-i18n="${skill.desc}" class="text-[11px] opacity-70 mt-1">${translations[currentLang][skill.desc]}</p>
+                    `;
+
+                    skillsContainer.appendChild(card);
+
+                    // Dragging (Pick up from stack)
+                    let isDragging = false;
+                    let startMouseX, startMouseY, initialBaseX, initialBaseY;
+
+                    card.addEventListener('mousedown', (e) => {
+                        isDragging = true;
+                        card.style.zIndex = 2000;
+                        card.classList.remove('landed');
+                        startMouseX = e.clientX;
+                        startMouseY = e.clientY;
+                        initialBaseX = data.currentBaseX;
+                        initialBaseY = data.currentBaseY;
+                        card.style.transition = 'none';
+                    });
+
+                    document.addEventListener('mousemove', (e) => {
+                        if (!isDragging) return;
+                        data.currentBaseX = initialBaseX + (e.clientX - startMouseX);
+                        data.currentBaseY = initialBaseY + (e.clientY - startMouseY);
+                        data.element.style.setProperty('--base-x', `${data.currentBaseX}px`);
+                        data.element.style.setProperty('--base-y', `${data.currentBaseY}px`);
+                    });
+
+                    document.addEventListener('mouseup', () => {
+                        if (!isDragging) return;
+                        isDragging = false;
+                        card.classList.add('landed');
+                    });
+
+                    cardData.push(data);
+
+                    // Gravity Fall Action
+                    const delay = index * 120 + Math.random() * 300;
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.classList.add('landed'); // Uses cubic-bezier for "impact" ease
+                        
+                        data.currentBaseY = landingY;
+                        card.style.setProperty('--base-y', `${landingY}px`);
+                        card.style.setProperty('--rot-z', `${landingRot}deg`);
+                    }, delay);
+                });
+
+                // Show instruction hint
+                setTimeout(() => { document.getElementById('scroll-hint').style.opacity = '1'; }, 3000);
+            }
+
+            introOrb.addEventListener('click', startGravityRain);
+
+            // --- 3D Parallax Logic ---
+            let targetX = 0, targetY = 0;
+            let currentX = 0, currentY = 0;
+
+            function updateParallax() {
+                currentX += (targetX - currentX) * 0.08;
+                currentY += (targetY - currentY) * 0.08;
+
+                if (introBg) {
+                    introBg.style.transform = `translate(${currentX * -25}px, ${currentY * -25}px) scale(1.1)`;
+                }
+
+                if (started) {
+                    cardData.forEach((data) => {
+                        // Subtle drift even in the stack
+                        const moveX = currentX * data.baseZ * data.parallaxSpeed;
+                        const moveY = currentY * data.baseZ * data.parallaxSpeed;
+                        data.element.style.setProperty('--parallax-x', `${moveX}px`);
+                        data.element.style.setProperty('--parallax-y', `${moveY}px`);
+                    });
+                } else if (introOrb) {
+                    introOrb.style.transform = `translate(${currentX * 12}px, ${currentY * 12}px)`;
+                }
+
+                requestAnimationFrame(updateParallax);
+            }
+
+            window.addEventListener('mousemove', (e) => {
+                targetX = (e.clientX / window.innerWidth - 0.5) * 2;
+                targetY = (e.clientY / window.innerHeight - 0.5) * 2;
+            });
+
+            window.addEventListener('deviceorientation', (e) => {
+                if (e.beta && e.gamma) {
+                    targetX = (e.gamma / 45);
+                    targetY = (e.beta / 45);
+                    targetX = Math.max(-1, Math.min(1, targetX));
+                    targetY = Math.max(-1, Math.min(1, targetY));
+                }
+            });
+
+            updateParallax();
         })();
     </script>
     <style>
